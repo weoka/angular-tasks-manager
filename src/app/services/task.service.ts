@@ -20,19 +20,30 @@ export class TaskService {
     }
 
     this.localTasks.push(task);
+    this.saveTasks();
+  }
+
+  updateTask(task: Task) {
+    const taskId = this.localTasks.findIndex(x => {
+      x.id == task.id
+    });
+
+    this.localTasks[taskId] = task;
+    this.saveTasks();
+  }
+
+  saveTasks() {
     this.tasks.next(this.localTasks);
     window.localStorage.setItem('tasks', JSON.stringify(this.localTasks));
   }
 
-  loadTasks(): boolean {
+  loadTasks() {
     let savedTasks = window.localStorage.getItem('tasks');
 
-    if(!savedTasks) return false;
+    if(!savedTasks) return;
 
     this.localTasks = JSON.parse(savedTasks);
     this.tasks.next(this.localTasks);
-
-    return true;
   }
 
   constructor() {
