@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Input } from '@angular/core';
 import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
@@ -34,16 +34,20 @@ export class TaskComponent implements OnInit {
     this.title.setValue(task.title);
   };
 
+  @Output() editing: EventEmitter<Task | null> = new EventEmitter<Task | null>();
+
   editingMode: boolean = false;
   completed = new FormControl();
   title = new FormControl();
 
   edit() {
     this.editingMode = true;
+    this.editing.emit(this.localTask);
   }
 
   stopEditing() {
     this.editingMode = false;
+    this.editing.emit(null);
   }
 
   update() {

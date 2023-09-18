@@ -10,7 +10,13 @@
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" *ngIf="tasks.length">
       <ul class="todo-list">
-        <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+        <div *ngFor="let task of tasks">
+          <app-task
+          [task]="task"
+          (editing)="setEditing($event)"
+          *ngIf="!this.editing || (this.editing && this.editing.id === task.id)"
+        ></app-task>
+        </div>
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->

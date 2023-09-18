@@ -9,6 +9,7 @@ import { TaskService } from 'src/app/services/task.service';
 export class HomeComponent implements OnInit {
 
   tasks: Task[] = [];
+  editing: Task|null = null;
 
   constructor(
     private taskService: TaskService
@@ -18,6 +19,10 @@ export class HomeComponent implements OnInit {
     this.taskService.tasks$.subscribe((tasks: Task[]) => {
       this.tasks = tasks;
     });
+  }
+
+  setEditing(task: Task|null) {
+    this.editing = task;
   }
 
 }
