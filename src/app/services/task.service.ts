@@ -12,7 +12,13 @@ export class TaskService {
 
   tasks$ = this.tasks.asObservable();
 
-  addTask(task: Task) {
+  addTask(title: string) {
+    const task: Task = {
+      id: (Math.random() + 1).toString(36).substring(3),
+      title: title,
+      completed: false
+    }
+
     this.localTasks.push(task);
     this.tasks.next(this.localTasks);
     window.localStorage.setItem('tasks', JSON.stringify(this.localTasks));
