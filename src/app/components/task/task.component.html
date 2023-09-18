@@ -1,0 +1,8 @@
+<li [class.editing]="editing" [class.finished]="task.completed">
+  <div class="view">
+    <input class="toggle" type="checkbox" />
+    <label>{{ task.title }}</label>
+    <button class="destroy"></button>
+  </div>
+  <input class="edit" value="{{ task.title }}" />
+</li>
