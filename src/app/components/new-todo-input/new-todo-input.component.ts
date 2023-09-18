@@ -19,16 +19,18 @@ import { TaskService } from 'src/app/services/task.service';
 })
 
 export class NewTodoInputComponent {
-  task = new FormControl('', [Validators.required, Validators.minLength(1)]);
+  task = new FormControl('', [Validators.required, Validators.pattern(/[^ ]/)]);
 
   constructor(
     private taskService: TaskService
   ){}
 
   saveTask() {
-    if(!this.task.value) return;
+    if(!this.task.value || this.task.invalid) return;
 
-    this.taskService.addTask(this.task.value);
+    let title = this.task.value.replace(/\s+/g, ' ').trim();
+
+    this.taskService.addTask(title);
 
     this.task.reset();
   }
