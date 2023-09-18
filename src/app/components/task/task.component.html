@@ -6,7 +6,7 @@
   <div class="view">
     <input class="toggle" type="checkbox" [formControl]="completed" />
     <label (dblclick)="edit()">{{ localTask.title }}</label>
-    <button class="destroy"></button>
+    <button class="destroy" (click)="delete()"></button>
   </div>
   <input
     *ngIf="editingMode"

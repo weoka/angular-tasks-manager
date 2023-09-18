@@ -32,6 +32,14 @@ export class TaskService {
     this.saveTasks();
   }
 
+  deleteTask(task: Task) {
+    this.localTasks = this.localTasks.filter(x => {
+      return x.id !== task.id
+    });
+
+    this.saveTasks();
+  }
+
   saveTasks() {
     this.tasks.next(this.localTasks);
     window.localStorage.setItem('tasks', JSON.stringify(this.localTasks));

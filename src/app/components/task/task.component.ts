@@ -55,4 +55,8 @@ export class TaskComponent implements OnInit {
     this.taskService.updateTask(this.localTask);
     this.stopEditing();
   }
+
+  delete() {
+    this.taskService.deleteTask(this.localTask);
+  }
 }
