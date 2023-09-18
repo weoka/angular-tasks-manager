@@ -40,6 +40,14 @@ export class TaskService {
     this.saveTasks();
   }
 
+  deleteCompletedTasks() {
+    this.localTasks = this.localTasks.filter(x => {
+      return x.completed === false;
+    });
+
+    this.saveTasks();
+  }
+
   saveTasks() {
     this.tasks.next(this.localTasks);
     window.localStorage.setItem('tasks', JSON.stringify(this.localTasks));

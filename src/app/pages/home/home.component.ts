@@ -49,4 +49,8 @@ export class HomeComponent implements OnInit {
     this.editing = task;
   }
 
+  deleteCompletedTasks() {
+    this.taskService.deleteCompletedTasks();
+  }
+
 }
