@@ -1,4 +1,4 @@
-<li [class.editing]="editing" [class.finished]="task.completed">
+<li [class.editing]="editing" [class.completed]="task.completed" (click)="edit()" (focusout)="stopEditing()">
   <div class="view">
     <input class="toggle" type="checkbox" />
     <label>{{ task.title }}</label>

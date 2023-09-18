@@ -18,6 +18,10 @@ export class TaskComponent {
   editing: boolean = false;
 
   edit() {
-    this.editing = !this.editing;
+    this.editing = true;
+  }
+
+  stopEditing() {
+    this.editing = false;
   }
 }
