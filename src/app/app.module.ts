@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewTodoInputComponent } from './components/new-todo-input/new-todo-input.component';
 import { TaskComponent } from './components/task/task.component';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NewTodoInputComponent,
-    TaskComponent
+    TaskComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
