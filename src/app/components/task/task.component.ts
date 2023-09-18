@@ -31,16 +31,24 @@ export class TaskComponent implements OnInit {
   @Input() set task(task: Task) {
     this.localTask = task;
     this.completed.setValue(task.completed);
+    this.title.setValue(task.title);
   };
 
-  editing: boolean = false;
+  editingMode: boolean = false;
   completed = new FormControl();
+  title = new FormControl();
 
   edit() {
-    this.editing = true;
+    this.editingMode = true;
   }
 
   stopEditing() {
-    this.editing = false;
+    this.editingMode = false;
+  }
+
+  update() {
+    this.localTask.title = this.title.value;
+    this.taskService.updateTask(this.localTask);
+    this.stopEditing();
   }
 }

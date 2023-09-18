@@ -1,8 +1,19 @@
-<li [class.editing]="editing" [class.completed]="localTask.completed" (focusout)="stopEditing()">
+<li
+  [class.editing]="editingMode"
+  [class.completed]="localTask.completed"
+  (focusout)="stopEditing()"
+>
   <div class="view">
     <input class="toggle" type="checkbox" [formControl]="completed" />
     <label (dblclick)="edit()">{{ localTask.title }}</label>
     <button class="destroy"></button>
   </div>
-  <input *ngIf="editing" class="edit" appAutofocus />
+  <input
+    *ngIf="editingMode"
+    class="edit"
+    [formControl]="title"
+    appAutofocus
+    (keyup.enter)="update()"
+    (keydown.escape)="stopEditing()"
+  />
 </li>
